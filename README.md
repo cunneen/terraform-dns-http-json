@@ -7,7 +7,8 @@ implementations from:
 - [Cloudflare](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/make-api-requests/dns-json/)
 - [Alibaba Cloud](https://www.alibabacloud.com/help/en/dns/json-api-for-doh)
 - [Google](https://developers.google.com/speed/public-dns/docs/doh/json)
-- [AdGuard](https://adguard-dns.io/kb/public-dns/overview/#dns-over-https-doh-and-dns-over-tls-dot)
+- [AdGuard](https://adguard-dns.io/kb/public-dns/overview/#json-api-for-dns)
+- [NextDNS](https://nextdns.io/)
 
 ## Obtaining the local client IP address
 
@@ -33,7 +34,6 @@ This module aims to fill those gaps.
 # To look up the "A" record for "example.com", using the default (Google) nameserver
 module "http-json" {
   source  = "cunneen/http-json/dns"
-  version = "1.0.1"
   name = "example.com"
 }
 ```
@@ -49,7 +49,6 @@ module "http-json" {
     ```hcl
     module "http-json" {
       source             = "cunneen/http-json/dns"
-      version            = "1.0.1"
       name               = "o-o.myaddr.google.com"
       endpoint           = "https://myipv4.p1.opendns.com/get_my_ip"
     }
@@ -70,7 +69,6 @@ module "http-json" {
     ```hcl
     module "http-json" {
       source             = "cunneen/http-json/dns"
-      version            = "1.0.1"
       name               = "apple.com"
       type               = "NS"
       endpoint           = "https://cloudflare-dns.com/dns-query"
