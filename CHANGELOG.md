@@ -1,3 +1,10 @@
+
+
+* docs: :memo: Attempt to fix "Output" section (6107606)
+* chore: :adhesive_bandage: fix changelog (0b9c522)
+* build: :hammer: update npm release-it script (73a1633)
+* build: :hammer: update npm release-it script (ebfdca6)
+
 ## [1.2.1](https://github.com/cunneen/terraform-dns-http-json/compare/v1.2.0...v1.2.1) (2024-12-05)
 
 * build: :hammer: update npm release-it script (7dc3723)
