@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.1.0",
   "devDependencies": {
     "@release-it/conventional-changelog": "^9.0.3",
     "release-it": "^17.10.0"
@@ -24,11 +24,21 @@
         "preset": {
           "name": "conventionalcommits",
           "type": [
-            { "type": "feat", "section": "Features"},
-            { "type": "fix", "section": "Bug Fixes"},
-            { "type": "docs", "section": "Documentation"}
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {
+              "type": "docs",
+              "section": "Documentation"
+            }
           ]
         }
       }
-    }   }
+    }
+  }
 }
