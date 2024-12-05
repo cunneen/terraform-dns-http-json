@@ -1,7 +1,7 @@
 # Use OpenDNS to lookup the IP address of the computer upon which `terraform
 #  plan` or `terraform apply` is being run
 module "dns_http_json" {
-  source   = "github.com/cunneen/terraform-dns-http-json"
+  source   = "../.."
   endpoint = "https://myipv4.p1.opendns.com/get_my_ip"
   name     = "o-o.myaddr.google.com" # The OpenDNS service doesn't actually require the
   #                                  `name` parameter at all, but we *do* require it

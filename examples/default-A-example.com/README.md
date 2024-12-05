@@ -3,14 +3,14 @@
 Using the default (Google) nameserver to lookup the `"A"` record for `"example.com"`
 
 ```hcl
-module "dns_http_json" {
-  source = "github.com/cunneen/terraform-dns-http-json"
+module "http-json" {
+  source = "cunneen/http-json/dns"
   name   = "example.com"
 }
 
 output "example_com_A" {
   description = "A record for example.com"
-  value       = module.dns_http_json
+  value       = module.http-json
 }
 ```
 

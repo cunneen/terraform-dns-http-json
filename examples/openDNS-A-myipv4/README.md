@@ -4,8 +4,8 @@
   plan` or `terraform apply` is being run
 
 ```hcl
-module "dns_http_json" {
-  source   = "../.."
+module "http-json" {
+  source   = "cunneen/http-json/dns"
   endpoint = "https://myipv4.p1.opendns.com/get_my_ip"
   name     = "o-o.myaddr.google.com" # The OpenDNS service doesn't actually require the
   #                                    `name` parameter at all, but we *do* require it
@@ -15,7 +15,7 @@ module "dns_http_json" {
 
 output "my_ip" {
   description = "my_ip"
-  value       = module.dns_http_json
+  value       = module.http-json
 }
 ```
 

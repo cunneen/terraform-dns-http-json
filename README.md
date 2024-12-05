@@ -1,8 +1,13 @@
 # DNS over HTTP JSON
 
-This terraform module provides a mechanism to query a DNS over HTTP (DoH) JSON API (as per
-[Google's
-specification](https://developers.google.com/speed/public-dns/docs/doh/json)) in Terraform.
+This terraform module provides a mechanism to query a DNS over HTTP (DoH) JSON API as per
+[Google's specification](https://developers.google.com/speed/public-dns/docs/doh/json) and
+implementations from:
+
+- [Cloudflare](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/make-api-requests/dns-json/)
+- [Alibaba Cloud](https://www.alibabacloud.com/help/en/dns/json-api-for-doh)
+- [Google](https://developers.google.com/speed/public-dns/docs/doh/json)
+- [AdGuard](https://adguard-dns.io/kb/public-dns/overview/#dns-over-https-doh-and-dns-over-tls-dot)
 
 ## Obtaining the local client IP address
 
@@ -26,8 +31,9 @@ This module aims to fill those gaps.
 
 ```hcl
 # To look up the "A" record for "example.com", using the default (Google) nameserver
-module "dns_http_json" {
-  source = "github.com/cunneen/terraform-dns-http-json"
+module "http-json" {
+  source  = "cunneen/http-json/dns"
+  version = "1.0.1"
   name = "example.com"
 }
 ```
@@ -41,10 +47,11 @@ module "dns_http_json" {
   - Note also that the response format does differs from that of Google and Cloudflare.
 
     ```hcl
-    module "dns_http_json" {
-        source = "github.com/cunneen/terraform-dns-http-json"
-        name               = "o-o.myaddr.google.com"
-        endpoint           = "https://myipv4.p1.opendns.com/get_my_ip"
+    module "http-json" {
+      source             = "cunneen/http-json/dns"
+      version            = "1.0.1"
+      name               = "o-o.myaddr.google.com"
+      endpoint           = "https://myipv4.p1.opendns.com/get_my_ip"
     }
     ```
 
@@ -61,9 +68,9 @@ module "dns_http_json" {
 - Use Cloudflare to lookup Apple's NS records
 
     ```hcl
-    module "dns_http_json" {
-      source = "github.com/cunneen/terraform-dns-http-json"
-
+    module "http-json" {
+      source             = "cunneen/http-json/dns"
+      version            = "1.0.1"
       name               = "apple.com"
       type               = "NS"
       endpoint           = "https://cloudflare-dns.com/dns-query"

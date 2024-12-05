@@ -1,8 +1,8 @@
 # Use Cloudflare to lookup the NS records for Apple
 
 ```hcl
-module "dns_http_json" {
-  source = "github.com/cunneen/terraform-dns-http-json"
+module "http-json" {
+  source   = "cunneen/http-json/dns"
   name     = "apple.com"
   type     = "NS"
   endpoint = "https://cloudflare-dns.com/dns-query"
@@ -13,7 +13,7 @@ module "dns_http_json" {
 
 output "apple_NS_records" {
   description = "NS Records for apple.com"
-  value       = module.dns_http_json
+  value       = module.http-json
 }
 ```
 
