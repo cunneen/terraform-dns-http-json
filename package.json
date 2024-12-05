@@ -8,7 +8,7 @@
     "release-it": "^17.10.0"
   },
   "scripts": {
-    "release": "release-it",
+    "release": "release-it -i --only-version",
     "prepare": "husky"
   },
   "release-it": {
