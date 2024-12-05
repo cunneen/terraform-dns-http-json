@@ -1,5 +1,11 @@
 
 
+## [1.2.0](https://github.com/cunneen/terraform-dns-http-json/compare/v1.1.0...v1.2.0) (2024-12-05)
+
+### Features
+
+* :hammer: Add commit linting ([c1187f8](https://github.com/cunneen/terraform-dns-http-json/commit/c1187f8f659536848c675450dd6a088eee410a5f))
+
 ## [1.1.0](https://github.com/cunneen/terraform-dns-http-json/compare/v1.0.1...v1.1.0) (2024-12-05)
 
 ### Features
