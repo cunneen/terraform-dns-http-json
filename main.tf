@@ -1,53 +1,47 @@
-# Copyright (c) HashiCorp, Inc.
+# Copyright (c) Mike Cunneen
 # SPDX-License-Identifier: MPL-2.0
 
-# Terraform configuration
-
-provider "aws" {
-  region = "us-west-2"
+terraform {
+  required_providers {
+    http = {
+      source  = "hashicorp/http"
+      version = "3.4.5"
+    }
+  }
+  required_version = "~> 1.2"
 }
 
-module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "5.1.2"
+# ==== Reformats the provided variable values into a query string ====
+locals {
+  # Merge all the query parameters
+  nameParam = {
+    (var.query_param_name) : var.name
+  }
+  other_query_params = {
+    type               = var.type
+    do                 = var.do
+    ct                 = var.ct
+    cd                 = var.cd
+    edns_client_subnet = var.edns_client_subnet
+    random_padding     = var.random_padding
+  }
 
-  name = var.vpc_name
-  cidr = var.vpc_cidr
-
-  azs             = var.vpc_azs
-  private_subnets = var.vpc_private_subnets
-  public_subnets  = var.vpc_public_subnets
-
-  enable_nat_gateway = var.vpc_enable_nat_gateway
-
-  tags = var.vpc_tags
+  all_query_params = merge(local.nameParam, local.other_query_params, var.query_params)
+  querystring = join("&", [
+    for k, v in local.all_query_params : "${k}=${urlencode(v)}" if v != null && v != ""
+  ])
 }
 
-module "ec2_instances" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "5.5.0"
-
-  count = 2
-  name  = "my-ec2-cluster-${count.index}"
-
-  ami                    = "ami-0c5204531f799e0c6"
-  instance_type          = "t2.micro"
-  vpc_security_group_ids = [module.vpc.default_security_group_id]
-  subnet_id              = module.vpc.public_subnets[0]
-
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
+data "http" "dns_response" {
+  url             = "${var.endpoint}?${local.querystring}"
+  method          = "GET"
+  request_headers = var.headers
+  request_body    = var.request_body
+  lifecycle {
+    postcondition {
+      condition     = self.status_code >= 200 && self.status_code < 300
+      error_message = "${var.endpoint}?${local.querystring} returned an unhealthy status code"
+    }
   }
 }
 
-module "website_s3_bucket" {
-  source = "./modules/aws-s3-static-website-bucket"
-
-  bucket_name = "robin-test-dec-17-2019"
-
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
-  }
-}
