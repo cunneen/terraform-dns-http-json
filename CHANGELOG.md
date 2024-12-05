@@ -1,5 +1,7 @@
 
 
+* docs: :memo: Final attempt to fix "Output" section (ec50724)
+
 * docs: :memo: Attempt to fix "Output" section (6107606)
 * chore: :adhesive_bandage: fix changelog (0b9c522)
 * build: :hammer: update npm release-it script (73a1633)
