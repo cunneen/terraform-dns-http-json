@@ -1,6 +1,6 @@
 # DNS over HTTP JSON
 
-The aim of this module is to support DNS over HTTP (DoH) JSON API (as per
+This terraform module provides a mechanism to query a DNS over HTTP (DoH) JSON API (as per
 [Google's
 specification](https://developers.google.com/speed/public-dns/docs/doh/json)) in Terraform.
 
@@ -169,7 +169,7 @@ No modules.
 
 #### Successful Response
 
-***Important***: This module expects the response to be a valid JSON response. Note, however, that there is not yet any agreed standard for the various providers, and each provider may return different responses. For example, [OpenDNS' response in the above example](#obtaining-the-ns-records-for-apple-using-cloudflare) differs from that of Google and Cloudflare (who have both adopted the same response format).
+***Important***: This module expects the response to be a valid JSON response. Note, however, that there is not yet any agreed standard for the various providers, and each provider may return different responses. For example, [OpenDNS' response in the above example](#obtaining-the-local-client-ip-address-with-opendns) differs from that of Google and Cloudflare (who have both adopted the same response format).
 
 This module expects the response to be a valid JSON document.
 
