@@ -1,4 +1,4 @@
-
+## [1.2.1](https://github.com/cunneen/terraform-dns-http-json/compare/v1.2.0...v1.2.1) (2024-12-05)
 
 * build: :hammer: update npm release-it script (7dc3723)
 * docs: :memo: Add nextDNS example (622bbc9)
