@@ -37,11 +37,5 @@ data "http" "dns_response" {
   method          = "GET"
   request_headers = var.headers
   request_body    = var.request_body
-  lifecycle {
-    postcondition {
-      condition     = self.status_code >= 200 && self.status_code < 300
-      error_message = "${var.endpoint}?${local.querystring} returned an unhealthy status code"
-    }
-  }
 }
 
