@@ -40,3 +40,4 @@ terraform.tfstate
 
 /.history
 
+node_modules
